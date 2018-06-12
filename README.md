@@ -2,13 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
-## Pre-requisitos
- - Para encontrar o comando 'ng':
+## First steps
+ - Install angular cli
   npm install -g @angular/cli
- - Para compilar:  erro(Could not find module "@angular-devkit/build-angular" from...)
-  1 - cd na diretorio do projeto
-  2 - npm install
- - Para rodar:
+ - Open the project folder and run
+  npm install
+ - Run the project
   ng serve
   
 ## Development server
