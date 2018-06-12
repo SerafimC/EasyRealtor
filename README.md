@@ -2,6 +2,15 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
+## Pre-requisitos
+ - Para encontrar o comando 'ng':
+  npm install -g @angular/cli
+ - Para compilar:  erro(Could not find module "@angular-devkit/build-angular" from...)
+  1 - cd na diretorio do projeto
+  2 - npm install
+ - Para rodar:
+  ng serve
+  
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
