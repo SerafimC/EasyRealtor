@@ -4,11 +4,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## First steps
  - Install angular cli
-  npm install -g @angular/cli
+  `npm install -g @angular/cli`
  - Open the project folder and run
-  npm install
+  `npm install`
  - Run the project
-  ng serve
+  `ng serve`
   
 ## Development server
 
