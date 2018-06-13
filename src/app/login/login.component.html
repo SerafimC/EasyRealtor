@@ -1,5 +1,22 @@
+<!--
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span>Easy Realtor</span>
   </mat-toolbar-row>
 </mat-toolbar>
+-->
+<mat-grid-list cols="1" rowHeight="2:1">
+  <mat-grid-tile style="background: black;">
+    <mat-list>
+        <mat-list-item><h1>EASY REALTOR</h1></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <button mat-stroked-button style="margin:20px;" (click)="anunciar()">Anuncie</button>
+            <button mat-stroked-button style="margin:20px;" (click)="alugar()">Alugue</button>
+        </mat-list-item>
+      </mat-list>
+
+  </mat-grid-tile>
+</mat-grid-list>
+
+

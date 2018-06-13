@@ -11,5 +11,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  anunciar() {
+    console.log('anunciar');
+  }
+  alugar() {
+    console.log('alugar');
+  }
 }
