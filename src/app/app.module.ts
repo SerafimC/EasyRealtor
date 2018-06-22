@@ -1,3 +1,5 @@
+
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -8,15 +10,19 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-
+import { AnuncioComponent } from './anuncio/anuncio.component';
+import { AlugarComponent } from './alugar/alugar.component';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    AlugarComponent,
+    AnuncioComponent
   ],
   imports: [
     BrowserModule,
