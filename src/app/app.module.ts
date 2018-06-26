@@ -44,19 +44,14 @@ import {
   MatTreeModule,
 } from '@angular/material';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { AnuncioComponent } from './anuncio/anuncio.component';
-import { AlugarComponent } from './alugar/alugar.component';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    AlugarComponent,
-    AnuncioComponent
+    LoginComponent
   ],
   exports: [
     MatAutocompleteModule,

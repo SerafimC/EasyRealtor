@@ -1,0 +1,16 @@
+.select-cidades {
+    width: 100%;
+    margin-left: 15px;
+}
+
+.input-descricao {
+    width: 100%;
+}
+
+.input-email {
+    width: 100%;
+}
+
+.button {
+    margin: 10px;
+}

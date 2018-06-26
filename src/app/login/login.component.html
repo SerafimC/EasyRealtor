@@ -5,19 +5,19 @@
   </mat-toolbar-row>
 </mat-toolbar>
 -->
-<mat-grid-list cols="1" rowHeight="2:1">
-  <mat-grid-tile style="background: black;">
-    <mat-list>
-        <mat-list-item><h1>EASY REALTOR</h1></mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Você está:</mat-list-item>
-        <mat-list-item>
-            <button mat-stroked-button style="margin:20px;" (click)="anunciar()">Procurando</button>
-            <button mat-stroked-button style="margin:20px;" (click)="alugar()">Ofertando</button>
-        </mat-list-item>
-      </mat-list>
+<mat-grid-list cols="1" rowHeight="2:1" style="background: rgb(64, 51, 184);">
+    <mat-grid-tile>
+        <mat-list>
+            <mat-list-item>
+                <h1 style="margin: auto">EASY REALTOR</h1>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Você está:</mat-list-item>
+            <mat-list-item>
+                <button mat-stroked-button style="margin:20px;" (click)="client()">Procurando</button>
+                <button mat-stroked-button style="margin:20px;" (click)="advertiser()">Ofertando</button>
+            </mat-list-item>
+        </mat-list>
 
-  </mat-grid-tile>
+    </mat-grid-tile>
 </mat-grid-list>
-
-

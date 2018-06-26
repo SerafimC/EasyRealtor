@@ -1,8 +1,7 @@
-import { AlugarComponent } from './alugar/alugar.component';
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { AnuncioComponent } from './anuncio/anuncio.component';
 
 const routes: Routes = [
     {
@@ -10,8 +9,7 @@ const routes: Routes = [
         component: LoginComponent,
     },
     { path: 'login', component: LoginComponent },
-    { path: 'alugar', component: AlugarComponent },
-    { path: 'anuncio', component: AnuncioComponent }
+    { path: 'client', loadChildren: './client/client.module#ClientModule'}
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

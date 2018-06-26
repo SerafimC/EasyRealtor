@@ -11,10 +11,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
-  anunciar() {
-    this.router.navigate(['/anuncio']);
+  advertiser() {
+    this.router.navigate(['/advertiser']);
   }
-  alugar() {
-    this.router.navigate(['/alugar']);
+  client() {
+    this.router.navigate(['/client']);
   }
 }
