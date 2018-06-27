@@ -1,0 +1,17 @@
+<mat-toolbar style="background: rgb(64, 51, 184); color: white;"></mat-toolbar>
+<mat-grid-list cols="1" rowHeight="2.15:1" style="background: rgb(64, 51, 184);">
+    <mat-grid-tile>
+        <mat-list>
+            <mat-list-item>
+                <h1 style="margin: auto">EASY REALTOR</h1>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Seja bem vindo!</mat-list-item>
+            <mat-list-item>
+                <button mat-stroked-button style="margin:20px;" (click)="setSession(true)">Iniciar Sessão</button>
+                <button mat-stroked-button style="margin:20px;" (click)="setSession(false)">Sair da Sessão</button>
+            </mat-list-item>
+        </mat-list>
+
+    </mat-grid-tile>
+</mat-grid-list>
