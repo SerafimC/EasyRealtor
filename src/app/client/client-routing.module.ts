@@ -2,15 +2,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { InterestComponent } from './interest/interest.component';
+import { RealtySearchComponent } from './realty-search/realty-search.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: InterestComponent,
-        children: [
-            { path: 'new_interest', component: InterestComponent }
-        ]
-    },
+        { path: 'new_interest', component: InterestComponent },
+        { path: 'realty_search', component: RealtySearchComponent }
 ];
 @NgModule({
     imports: [RouterModule.forChild(routes)],

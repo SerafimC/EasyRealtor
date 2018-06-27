@@ -61,4 +61,8 @@ export class InterestComponent implements OnInit {
     }
   }
 
+  search_realty(){
+    this.router.navigate(['/realty_search']);
+  }
+
 }

@@ -15,6 +15,6 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/advertiser']);
   }
   client() {
-    this.router.navigate(['/client']);
+    this.router.navigate(['/new_interest']);
   }
 }

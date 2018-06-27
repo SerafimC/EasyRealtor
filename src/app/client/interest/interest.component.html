@@ -1,12 +1,5 @@
-<!--
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>Easy Realtor</span>
-  </mat-toolbar-row>
-</mat-toolbar>
--->
-
-<mat-grid-list cols="1" rowHeight="2:1">
+<mat-toolbar style="background: rgb(64, 51, 184); color: white;"></mat-toolbar>
+<mat-grid-list cols="1" rowHeight="2.15:1">
     <mat-grid-tile style="background: rgb(64, 51, 184);">
         <mat-list>
             <mat-list-item>
@@ -52,6 +45,11 @@
                 <button class="button" mat-stroked-button (click)="cancelar()">Cancelar</button>
             </mat-list-item>
         </mat-list>
-
+        <mat-list>
+            <mat-list-item>
+                <h1>Ou</h1>
+                <button class="button" mat-stroked-button (click)="search_realty()"><h1>Procure um imóvel</h1></button>
+            </mat-list-item>
+        </mat-list>
     </mat-grid-tile>
 </mat-grid-list>
