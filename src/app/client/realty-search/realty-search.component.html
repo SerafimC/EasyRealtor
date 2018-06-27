@@ -1,42 +1,44 @@
 <mat-toolbar style="background: rgb(143, 135, 255); color: white;">
     <button style="background: rgb(63, 53, 156); color: white;" mat-button [matMenuTriggerFor]="menu">Menu</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>Buscar Imóvel</button>
-      <button mat-menu-item>Visualizar ofertas</button>
-      <button mat-menu-item>Cadastrar interesse</button>
+        <button mat-menu-item>Buscar Imóvel</button>
+        <button mat-menu-item>Visualizar ofertas</button>
+        <button mat-menu-item>Cadastrar interesse</button>
     </mat-menu>
 </mat-toolbar>
 <mat-grid-list cols="1" rowHeight="2.15:1">
     <mat-grid-tile style=" background: rgb(64, 51, 184);">
-      <form class="example-form" style="width: 90%; height: 100%;">
-        <mat-form-field class="example-full-width" style="width: 100%;">
-          <input matInput placeholder="O que você busca?">
-        </mat-form-field>
-        <mat-grid-list cols="3" rowHeight="95%">
-            <mat-grid-tile >
-              <mat-list>
-                <mat-list-item><h2>Seus interesses</h2></mat-list-item>
-                <mat-list-item><mat-card>Simple card</mat-card></mat-list-item>
-                <mat-list-item><mat-card>Simple card</mat-card></mat-list-item>
-                <mat-list-item><mat-card>Simple card</mat-card></mat-list-item>
-                <mat-list-item><mat-card>Simple card</mat-card></mat-list-item>
-              </mat-list>
-            </mat-grid-tile>
-            
-            <mat-grid-tile >
-                <mat-list>
-                    <mat-list-item><h2>Sugestões para</h2></mat-list-item>
-                    <mat-list-item><mat-card>Simple card</mat-card></mat-list-item>
-                    <mat-list-item><mat-card>Simple card</mat-card></mat-list-item>
-                    <mat-list-item><mat-card>Simple card</mat-card></mat-list-item>
-                    <mat-list-item><mat-card>Simple card</mat-card></mat-list-item>
-                  </mat-list>
-            </mat-grid-tile>
-            
-            <mat-grid-tile >
-                <div><app-maps></app-maps></div>
-            </mat-grid-tile>
-        </mat-grid-list>
-      </form>
+        <form class="example-form" style="width: 90%; height: 100%;">
+            <mat-form-field class="example-full-width" style="width: 100%;">
+                <input matInput placeholder="O que você busca?">
+            </mat-form-field>
+            <mat-grid-list cols="3" rowHeight="95%">
+                <mat-grid-tile>
+                    <mat-card class="container">
+                        <h3>Seus interesses</h3>
+                        <div *ngFor="let interest of interesties">
+                            <mat-card>
+                                <h4>{{interest.title}}</h4>
+                                <mat-card-content>{{interest.description}}</mat-card-content>
+                                <mat-card-footer><button mat-stroked-button>detalhes</button></mat-card-footer>
+                            </mat-card>
+                        </div>
+                    </mat-card>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-card class="container">
+                        <h3>Sugestões para você</h3>
+                        <mat-card>
+                            <mat-card-title>Imovel 1</mat-card-title>
+                        </mat-card>
+                    </mat-card>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-card class="mapcContainer">
+                        <app-maps></app-maps>
+                    </mat-card>>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </form>
     </mat-grid-tile>
 </mat-grid-list>

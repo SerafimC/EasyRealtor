@@ -1,13 +1,34 @@
-mat-grid-tile h2 {
+mat-grid-tile h2 h3 h4 {
     font-family: Verdana, Arial, Helvetica, sans-serif;
 }
+
 mat-grid-list {
     align-items: center
 }
-mat-list-item{
-    margin-top:30px;
+
+button {
+    margin-left: 25px;
+    margin-bottom: 10px;
 }
-mat-card{
+
+mat-card {
+    margin: 5px;
+}
+
+.mapcContainer {
+    height: 80%;
+    width: 100%;
     color: black;
     background: white;
+}
+
+.container {
+    height: 80%;
+    width: 80%;
+    color: black;
+    background: white;
+}
+
+.cols {
+    float: right;
 }
