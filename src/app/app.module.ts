@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { AlertComponentOK } from './shared/alerts/alertOK/alertOK.component';
+import { AlertComponentOKCancel } from './shared/alerts/alertOKCancel/alertOKCancel.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { IndexComponent } from './index/index.component';
 import { RegisterComponent } from './register/register.component';
@@ -23,6 +25,8 @@ import { ClientModule } from './client/client.module';
     AppComponent,
     IndexComponent,
     LoginComponent,
+    AlertComponentOK,
+    AlertComponentOKCancel,
     DashboardComponent,
     RegisterComponent
   ],

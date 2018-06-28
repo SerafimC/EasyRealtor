@@ -3,6 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {FormControl, Validators} from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
+import { HttpClient } from '@angular/common/http';
+import { Pessoa } from '../model/Pessoa';
+import { Inject, Injectable } from '@angular/core';
+import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
+import {MatDialog} from '@angular/material';
+import { AlertComponentOKCancel } from '../shared/alerts/alertOKCancel/alertOKCancel.component';
+const STORAGE_KEY = 'current-SESSION';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +18,7 @@ import { MatDialogRef } from '@angular/material';
 })
 
 export class LoginComponent {
-  hide = true;
+  pessoa = new Pessoa();
   public email = new FormControl('', [Validators.required, Validators.email]);
   public senha = new FormControl('', [Validators.required]);
   getErrorEmailMessage() {
@@ -23,17 +30,62 @@ export class LoginComponent {
     return this.email.hasError('required') ? 'Você precisa informar a senha' :
             '';
   }
-
-  constructor(public dialogRef: MatDialogRef<LoginComponent>) {}
-
-  login() {
+  closeDialog(option){
+    this.dialogRef.close(option);
+  }
+  constructor(@Inject(SESSION_STORAGE) private storage: StorageService, public dialogRef: MatDialogRef<LoginComponent>, public dialog: MatDialog, private http: HttpClient) {}
+  
+  efetuarLogin() {
     if (!this.email.hasError('required') && !this.email.hasError('email')) {
-      if (!this.senha.hasError('required')) {
-        const usr = {
-          email: this.email.value,
-          senha: this.senha.value,
-        };
+      if (!this.senha.hasError('required')) { 
+          try {
+            this.http.get('https://ninjatags.com.br/eng2/getPessoa.php?applicationId=chave&email=' + this.email.value + '&senha=' + this.senha.value).subscribe(data => {
+              this.pessoa = data as Pessoa;
+              if(this.pessoa.Email==null){              
+                const error : Error = data as Error;
+                console.log(error);
+                const dialogAlert = this.dialog.open(AlertComponentOKCancel, {
+                  width: '400px',
+                  data: {title: 'Erro!', message: error.message, buttonCancel: 'Cancelar', buttonConfirm: 'Tentar novamente'}
+                });
+                dialogAlert.afterClosed().subscribe(result => {
+                  if(!result) this.closeDialog(-1);
+                });
+              }else{
+                console.log(this.pessoa);
+                this.setSession(this.pessoa);
+                this.closeDialog(1);
+              }            
+            });
+          }catch(erro) {
+            console.log(erro);
+            const error : Error = erro as Error;
+            const dialogAlert = this.dialog.open(AlertComponentOKCancel, {
+              width: '400px',
+              data: {title: 'Erro!', message: error.message, buttonCancel: 'Cancelar', buttonConfirm: 'Tentar novamente'}          });
+            dialogAlert.afterClosed().subscribe(result => {
+              if(!result) this.closeDialog(-1);
+            });
+          }
       }
     }
+    
+  }
+  setSession(user) {
+    console.log(user);
+    this.storage.set(STORAGE_KEY, user);
+  }
+
+  public getSession(): boolean {
+    const awesomeSession: Pessoa = this.storage.get(STORAGE_KEY) || null;
+    console.log(awesomeSession);
+    if (awesomeSession != null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  login() {
+    
   }
 }

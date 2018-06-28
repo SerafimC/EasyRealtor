@@ -55,10 +55,10 @@
               <input matInput placeholder="Informe seu Bairro" [formControl]="bairro" required>
               <mat-error *ngIf="bairro.invalid && buttonClicked">{{ getErrorBairroMessage() }}</mat-error>
           </mat-form-field>
-          <mat-form-field class="input-register-telefone">
+            <mat-form-field class="input-register-telefone">
             <input matInput placeholder="Informe seu telefone" [formControl]="telefone" required>
             <mat-error *ngIf="telefone.invalid && buttonClicked">{{ getErrorTelefoneMessage() }}</mat-error>
-        </mat-form-field>
+            </mat-form-field>
             </mat-list-item>
             <br/>
             <mat-list-item>
@@ -74,6 +74,6 @@
         </mat-list>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cancelar</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Cadastrar</button>
-  </mat-dialog-actions>
+    <button mat-button (click)="closeDialog(false)">Cancelar</button>
+    <button mat-button (click)="cadastrar()" cdkFocusInitial>Cadastrar</button>
+</mat-dialog-actions>

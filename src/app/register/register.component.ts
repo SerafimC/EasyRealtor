@@ -3,6 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {FormControl, Validators} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { MatDialogRef } from '@angular/material';
+import { Pessoa } from '../model/Pessoa';
+import { Message } from '../model/Message';
+import {MatDialog} from '@angular/material';
+import { AlertComponentOK } from '../shared/alerts/alertOK/alertOK.component';
 
 @Component({
   selector: 'app-register',
@@ -12,8 +17,8 @@ import { HttpClient } from '@angular/common/http';
 
 export class RegisterComponent implements OnInit {
   tipos = [
-    {value: 'cliente', viewValue: 'Cliente'},
-    {value: 'corretor', viewValue: 'Corretor'}
+    {value: '0', viewValue: 'Corretor'},
+    {value: '1', viewValue: 'Cliente'}
   ];
   ufs = [
     {value: '12', viewValue: 'AC'},
@@ -44,8 +49,7 @@ export class RegisterComponent implements OnInit {
     {value: '28', viewValue: 'SE'},
     {value: '17', viewValue: 'TO'}
   ];
-  cidades = [
-  ];
+  cidades = [];
   buttonClicked = false;
   tipo = new FormControl('', [Validators.required]);
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -61,8 +65,8 @@ export class RegisterComponent implements OnInit {
   confirmacao = new FormControl('', [Validators.required]);
 
   getErrorTipoMessage() {
-    return this.email.hasError('required') ? 'Você precisa informar o tipo' :
-            '';
+      return this.email.hasError('required') ? 'Você precisa informar o tipo' :
+      '';
   }
   getErrorEmailMessage() {
     return this.email.hasError('required') ? 'Você precisa informar o e-mail' :
@@ -109,8 +113,7 @@ export class RegisterComponent implements OnInit {
     return this.email.hasError('required') ? 'Você precisa confirmar a sua senha' :
             '';
   }
-  constructor(private router: Router, private http: HttpClient) { }
-
+  constructor(public dialogRef: MatDialogRef<RegisterComponent>, private http: HttpClient, public dialog: MatDialog) {}
   ngOnInit() {
 
   }
@@ -119,5 +122,105 @@ export class RegisterComponent implements OnInit {
     this.http.get('https://ninjatags.com.br/eng2/getMunicipios.php?applicationId=chave&UF_CODIGO_IBGE=' + uf).subscribe(data => {
       this.cidades = data as Cidade[];
     });
+  }
+  closeDialog(option) {
+    this.dialogRef.close(option);
+  }
+
+  cadastrar() {
+    this.tipo.markAsTouched();
+    this.cep.markAsTouched();
+    this.email.markAsTouched();
+    this.cpf.markAsTouched();
+    this.telefone.markAsTouched();
+    this.uf.markAsTouched();
+    this.cidade.markAsTouched();
+    this.logradouro.markAsTouched();
+    this.bairro.markAsTouched();
+    this.senha.markAsTouched();
+    this.confirmacao.markAsTouched();
+    this.nome.markAsTouched();
+    this.buttonClicked = true;
+
+    if(this.verificarPendenciaFormulario()){
+      if(this.verificarSenhasConferem()){
+        const pessoa : Pessoa = new Pessoa();
+        pessoa.Bairro = this.bairro.value;
+        pessoa.Cep = this.cep.value;
+        pessoa.CodigoIbgeMunicipio = this.cidade.value;
+        pessoa.Cpf = this.cpf.value;
+        pessoa.Email = this.email.value;
+        pessoa.Logradouro = this.logradouro.value;
+        pessoa.Nome = this.nome.value;
+        pessoa.Senha = this.senha.value;
+        pessoa.Telefone = this.telefone.value;
+        pessoa.Tipo = this.tipo.value;
+        pessoa.Ativo = true;
+        const req = this.http.post('https://ninjatags.com.br/eng2/cadastrarPessoa.php?applicationId=chave', pessoa).subscribe(
+                res => {      
+                  const msg = res as Message; 
+                  if(msg.message=='Sucesso!'){
+                    const dialogAlert = this.dialog.open(AlertComponentOK, {
+                      width: '400px',
+                      data: {title: 'Sucesso!', message: 'Seu cadastro foi efetuado com sucesso. Realize o login para continuar!' ,  buttonConfirm: 'Ok'}
+                    });
+                    dialogAlert.afterClosed().subscribe(result => {
+                      this.closeDialog(true);
+                    });                                   
+                  }else if(msg.message=='Já existe um mesmo e-mail cadastrado!'){
+                    const dialogAlert = this.dialog.open(AlertComponentOK, {
+                      width: '400px',
+                      data: {title: 'Atenção!', message:  msg.message,  buttonConfirm: 'Ok'}
+                    });
+                    dialogAlert.afterClosed().subscribe(result => {
+                      this.closeDialog(true);
+                    });    
+                  }else{
+                    const dialogAlert = this.dialog.open(AlertComponentOK, {
+                      width: '400px',
+                      data: {title: 'Erro!', message: 'Ocorreu um erro ao gravar o seu interesse no nosso banco de dados, tente novamente!' ,  buttonConfirm: 'Ok'}
+                    });                    
+                  }                            
+                },
+                err => {
+                  console.log(err);
+                  const dialogAlert = this.dialog.open(AlertComponentOK, {
+                    width: '400px',
+                    data: {title: 'Erro!', message: 'Ocorreu um erro ao gravar o seu interesse no nosso banco de dados, tente novamente!' ,  buttonConfirm: 'Ok'}
+                    //data: {title: 'Erro!', message: err ,  buttonConfirm: 'Ok'}
+                  });
+                }
+                );
+      }else{
+        const dialogAlert = this.dialog.open(AlertComponentOK, {
+          width: '400px',
+          data: {title: 'Erro!', message: 'Senhas digitas não conferem!' ,  buttonConfirm: 'Ok'}
+        });
+        this.senha.setValue('');
+        this.confirmacao.setValue('');
+      }
+    }
+  }
+  verificarPendenciaFormulario() {
+    var validado : boolean = false;
+    if (!this.tipo.hasError('required')) 
+      if (!this.email.hasError('required') && !this.email.hasError('email')) 
+        if (!this.nome.hasError('required')) 
+          if (!this.cpf.hasError('required')) 
+          if (!this.telefone.hasError('required')) 
+          if (!this.uf.hasError('required')) 
+          if (!this.cidade.hasError('required')) 
+          if (!this.logradouro.hasError('required')) 
+          if (!this.cep.hasError('required')) 
+          if (!this.bairro.hasError('required')) 
+          if (!this.senha.hasError('required')) 
+            if (!this.confirmacao.hasError('required')) 
+              validado = true;                    
+    return validado;            
+  }
+  verificarSenhasConferem() {
+    if(this.senha.value==this.confirmacao.value)
+    return true;
+    else return false;
   }
 }
