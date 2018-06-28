@@ -1,0 +1,46 @@
+.input-register-email {
+  padding: 20px;
+  margin: 10px;
+  width: 100%;
+}
+.input-register-nome {
+  width: 100%;
+}
+.input-register-cpf {
+  margin: 10px;
+}
+.input-register-senha {
+  padding: 20px;
+  width: 100%;
+}
+.input-register-telefone{
+  margin: 10px;
+}
+.input-register-logradouro {
+  width: 100%;
+}
+.input-register-bairro {
+  margin: 10px;
+  width: 33%;
+}
+.input-register-uf {
+  width: 10%;
+}
+.input-register-cidade {
+  margin:10px;
+  width: 90%;
+}
+.input-register-cep {
+  width: 33%;
+}
+.input-register-telefone {
+  margin: 10px;
+  width: 33%;
+}
+.input-register-senha {
+  width: 100%;
+}
+.input-register-confirmacao {
+  margin: 10px;
+  width: 100%;
+}

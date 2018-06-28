@@ -1,17 +1,24 @@
-<mat-toolbar style="background: rgb(64, 51, 184); color: white;"></mat-toolbar>
-<mat-grid-list cols="1" rowHeight="2.15:1" style="background: rgb(64, 51, 184);">
-    <mat-grid-tile>
-        <mat-list>
-            <mat-list-item>
-                <h1 style="margin: auto">EASY REALTOR</h1>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>Você está:</mat-list-item>
-            <mat-list-item>
-                <button mat-stroked-button style="margin:20px;" (click)="client()">Procurando</button>
-                <button mat-stroked-button style="margin:20px;" (click)="advertiser()">Ofertando</button>
-            </mat-list-item>
-        </mat-list>
+<h2 mat-dialog-title>Faça o login:</h2>
+<mat-dialog-content>
+    <mat-list style="width: 100%;">
+        <mat-list-item class="input-login-email">
+          <mat-form-field class="input-login-email">
+              <textarea matInput placeholder="E-mail" [formControl]="email" required></textarea>
+              <mat-error *ngIf="email.invalid">{{ getErrorEmailMessage() }}</mat-error>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item class="input-login-senha">
+            <mat-form-field class="input-login-senha">
+                <input matInput placeholder="Insira sua senha" [formControl]="senha" required [type]="hide ? 'password' : 'text'">
+                <mat-error *ngIf="senha.invalid">{{ getErrorSenhaMessage() }}</mat-error>
 
-    </mat-grid-tile>
-</mat-grid-list>
+            </mat-form-field>
+        </mat-list-item>
+
+    </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Login</button>
+</mat-dialog-actions>
+
