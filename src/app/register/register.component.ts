@@ -8,6 +8,7 @@ import { Pessoa } from '../model/Pessoa';
 import { Message } from '../model/Message';
 import {MatDialog} from '@angular/material';
 import { AlertComponentOK } from '../shared/alerts/alertOK/alertOK.component';
+import {Md5} from 'ts-md5/dist/md5';
 
 @Component({
   selector: 'app-register',
@@ -144,6 +145,9 @@ export class RegisterComponent implements OnInit {
 
     if(this.verificarPendenciaFormulario()){
       if(this.verificarSenhasConferem()){
+        const md5 = new Md5();
+        md5.appendStr(this.senha.value);
+
         const pessoa : Pessoa = new Pessoa();
         pessoa.Bairro = this.bairro.value;
         pessoa.Cep = this.cep.value;
@@ -152,7 +156,7 @@ export class RegisterComponent implements OnInit {
         pessoa.Email = this.email.value;
         pessoa.Logradouro = this.logradouro.value;
         pessoa.Nome = this.nome.value;
-        pessoa.Senha = this.senha.value;
+        pessoa.Senha = md5.end().toString();
         pessoa.Telefone = this.telefone.value;
         pessoa.Tipo = this.tipo.value;
         pessoa.Ativo = true;

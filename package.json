@@ -27,6 +27,7 @@
     "core-js": "^2.5.4",
     "material-design-icons": "^3.0.1",
     "rxjs": "^6.2.1",
+    "ts-md5": "^1.2.4",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

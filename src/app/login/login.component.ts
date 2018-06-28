@@ -9,6 +9,8 @@ import { Inject, Injectable } from '@angular/core';
 import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
 import {MatDialog} from '@angular/material';
 import { AlertComponentOKCancel } from '../shared/alerts/alertOKCancel/alertOKCancel.component';
+import {Md5} from 'ts-md5/dist/md5';
+
 const STORAGE_KEY = 'current-SESSION';
 
 @Component({
@@ -39,7 +41,9 @@ export class LoginComponent {
     if (!this.email.hasError('required') && !this.email.hasError('email')) {
       if (!this.senha.hasError('required')) { 
           try {
-            this.http.get('https://ninjatags.com.br/eng2/getPessoa.php?applicationId=chave&email=' + this.email.value + '&senha=' + this.senha.value).subscribe(data => {
+            const md5 = new Md5();
+            md5.appendStr(this.senha.value);
+            this.http.get('https://ninjatags.com.br/eng2/getPessoa.php?applicationId=chave&email=' + this.email.value + '&senha=' + md5.end().toString()).subscribe(data => {
               this.pessoa = data as Pessoa;
               if(this.pessoa.Email==null){              
                 const error : Error = data as Error;
