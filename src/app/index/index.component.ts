@@ -5,9 +5,7 @@ import { Inject, Injectable } from '@angular/core';
 import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
 import {MatDialog} from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
-import { HttpClient } from '@angular/common/http';
-import { Pessoa } from '../model/Pessoa';
-import { AlertComponentOKCancel } from '../shared/alerts/alertOKCancel/alertOKCancel.component';
+
 const STORAGE_KEY = 'current-SESSION';
 
 @Component({
@@ -16,17 +14,15 @@ const STORAGE_KEY = 'current-SESSION';
   styleUrls: ['./index.component.css']
 })
 
+
 export class IndexComponent implements OnInit {
-  pessoa = new Pessoa();
-  constructor(@Inject(SESSION_STORAGE) private storage: StorageService, private router: Router, public dialog: MatDialog, private http: HttpClient) {
+
+  constructor(@Inject(SESSION_STORAGE) private storage: StorageService, private router: Router, public dialog: MatDialog) {
   }
   openLogin() {
     const dialogRef = this.dialog.open(LoginComponent);
-
     dialogRef.afterClosed().subscribe(result => {
-      if (result == 0) {
-        this.openLogin();        
-      }else if(result == 1){
+      if (result === 1) {
         this.router.navigate(['/dashboard']);
       }
     });
@@ -49,7 +45,7 @@ export class IndexComponent implements OnInit {
   }
 
   public getSession(): boolean {
-    const awesomeSession: Pessoa = this.storage.get(STORAGE_KEY) || null;
+    const awesomeSession: object = this.storage.get(STORAGE_KEY) || null;
     console.log(awesomeSession);
     if (awesomeSession != null) {
       return true;

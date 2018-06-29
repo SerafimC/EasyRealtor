@@ -22,6 +22,7 @@ const STORAGE_KEY = 'current-SESSION';
 export class LoginComponent {
   pessoa = new Pessoa();
   hide = true;
+  buttonClicked = false;
   public email = new FormControl('', [Validators.required, Validators.email]);
   public senha = new FormControl('', [Validators.required]);
   getErrorEmailMessage() {
@@ -40,6 +41,9 @@ export class LoginComponent {
   public dialogRef: MatDialogRef<LoginComponent>, public dialog: MatDialog, private http: HttpClient) {}
 
   efetuarLogin() {
+    this.buttonClicked = true;
+    this.email.markAsTouched();
+    this.senha.markAsTouched();
     if (!this.email.hasError('required') && !this.email.hasError('email')) {
       if (!this.senha.hasError('required')) {
           try {

@@ -99,6 +99,13 @@ export class InterestComponent implements OnInit {
     this.router.navigate(['/dashboard']);
   }
   confirmar() {
+    this.buttonClicked = true;
+    this.tipo.markAsTouched();
+    this.cidade.markAsTouched();
+    this.descricao.markAsTouched();
+    this.uf.markAsTouched();
+    this.banheiros.markAsTouched();
+    this.quartos.markAsTouched();
       if (!this.tipo.hasError('required')) {
         if (!this.cidade.hasError('required')) {
           if (!this.descricao.hasError('required')) {

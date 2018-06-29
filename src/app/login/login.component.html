@@ -1,16 +1,16 @@
 <h2 mat-dialog-title>Faça o login:</h2>
-<mat-dialog-content>
+<mat-dialog-content style="overflow: hidden; height: 200px; width: 500px;">
     <mat-list style="width: 100%;">
         <mat-list-item class="input-login-email">
           <mat-form-field class="input-login-email">
-              <textarea matInput placeholder="E-mail" [formControl]="email" required></textarea>
-              <mat-error *ngIf="email.invalid">{{ getErrorEmailMessage() }}</mat-error>
+              <input matInput placeholder="E-mail" [formControl]="email" required>
+              <mat-error *ngIf="email.invalid && buttonClicked">{{ getErrorEmailMessage() }}</mat-error>
           </mat-form-field>
         </mat-list-item>
         <mat-list-item class="input-login-senha">
             <mat-form-field class="input-login-senha">
                 <input matInput placeholder="Insira sua senha" [formControl]="senha" required [type]="hide ? 'password' : 'text'">
-                <mat-error *ngIf="senha.invalid">{{ getErrorSenhaMessage() }}</mat-error>
+                <mat-error *ngIf="senha.invalid && buttonClicked">{{ getErrorSenhaMessage() }}</mat-error>
             </mat-form-field>
         </mat-list-item>
     </mat-list>
