@@ -11,7 +11,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
   `ng serve`
   
   -obs: Install MD5 package 
-  'npm install --save ts-md5'
+  `npm install --save ts-md5`
   
 ## Development server
 
