@@ -12,16 +12,17 @@
             <mat-form-field class="example-full-width" style="width: 100%;">
                 <input matInput placeholder="O que você busca?">
             </mat-form-field>
+
             <mat-grid-list cols="3" rowHeight="95%">
-                <mat-grid-tile>
-                    <mat-card class="container">
+                <mat-grid-tile ng-scrollable="{scrollX:'none',scrollY:'left'}">
+                    <mat-card class="container" flex style="overflow: scroll;">
                         <h3>Seus interesses</h3>
                         <div *ngFor="let interest of interesties; let i = index">
                             <mat-card>
                                 <h3>Interesse {{ (i+1) }}</h3>
                                 <mat-card-content>{{interest.Descricao}}</mat-card-content>
                                 <mat-card-footer>
-                                  <button mat-stroked-button color="accent" (click)="detalhesInteresse(i)">detalhes</button>
+                                  <button mat-stroked-button color="accent" (click)="detalhesInteresse(i)">+detalhes</button>
                                   <button mat-stroked-button color="warn" (click)="apagarInteresse(i)">apagar</button>
                                 </mat-card-footer>
                             </mat-card>
@@ -29,10 +30,49 @@
                     </mat-card>
                 </mat-grid-tile>
                 <mat-grid-tile>
-                    <mat-card class="container">
+                    <mat-card class="container" flex style="overflow: scroll;">
                         <h3>Sugestões para você</h3>
                         <mat-card>
                             <mat-card-title>Imovel 1</mat-card-title>
+                            <mat-card-footer>
+                                <button mat-stroked-button color="accent">+detalhes</button>
+                                <button mat-stroked-button color="warn">ocultar</button>
+                            </mat-card-footer>
+                        </mat-card>
+                        <mat-card>
+                            <mat-card-title>Imovel 2</mat-card-title>
+                            <mat-card-footer>
+                                <button mat-stroked-button color="accent">+detalhes</button>
+                                <button mat-stroked-button color="warn">ocultar</button>
+                            </mat-card-footer>
+                        </mat-card>
+                        <mat-card>
+                            <mat-card-title>Imovel 3</mat-card-title>
+                            <mat-card-footer>
+                                <button mat-stroked-button color="accent">+detalhes</button>
+                                <button mat-stroked-button color="warn">ocultar</button>
+                            </mat-card-footer>
+                        </mat-card>
+                        <mat-card>
+                            <mat-card-title>Imovel 4</mat-card-title>
+                            <mat-card-footer>
+                                <button mat-stroked-button color="accent">+detalhes</button>
+                                <button mat-stroked-button color="warn">ocultar</button>
+                            </mat-card-footer>
+                        </mat-card>
+                        <mat-card>
+                            <mat-card-title>Imovel 5</mat-card-title>
+                            <mat-card-footer>
+                                <button mat-stroked-button color="accent">detalhes</button>
+                                <button mat-stroked-button color="warn">ocultar</button>
+                            </mat-card-footer>
+                        </mat-card>
+                        <mat-card>
+                            <mat-card-title>Imovel 6</mat-card-title>
+                            <mat-card-footer>
+                                <button mat-stroked-button color="accent">detalhes</button>
+                                <button mat-stroked-button color="warn">ocultar</button>
+                            </mat-card-footer>
                         </mat-card>
                     </mat-card>
                 </mat-grid-tile>

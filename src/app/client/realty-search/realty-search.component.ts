@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material';
 import { TipoInteresse } from '../../model/TipoInteresse';
 import { AlertComponentOK } from '../../shared/alerts/alertOK/alertOK.component';
 const STORAGE_KEY = 'current-SESSION';
+import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-realty-search',
