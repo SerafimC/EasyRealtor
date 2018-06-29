@@ -21,6 +21,7 @@ const STORAGE_KEY = 'current-SESSION';
 
 export class LoginComponent {
   pessoa = new Pessoa();
+  hide = true;
   public email = new FormControl('', [Validators.required, Validators.email]);
   public senha = new FormControl('', [Validators.required]);
   getErrorEmailMessage() {
@@ -32,48 +33,54 @@ export class LoginComponent {
     return this.email.hasError('required') ? 'Você precisa informar a senha' :
             '';
   }
-  closeDialog(option){
+  closeDialog(option) {
     this.dialogRef.close(option);
   }
-  constructor(@Inject(SESSION_STORAGE) private storage: StorageService, public dialogRef: MatDialogRef<LoginComponent>, public dialog: MatDialog, private http: HttpClient) {}
-  
+  constructor(@Inject(SESSION_STORAGE) private storage: StorageService,
+  public dialogRef: MatDialogRef<LoginComponent>, public dialog: MatDialog, private http: HttpClient) {}
+
   efetuarLogin() {
     if (!this.email.hasError('required') && !this.email.hasError('email')) {
-      if (!this.senha.hasError('required')) { 
+      if (!this.senha.hasError('required')) {
           try {
             const md5 = new Md5();
             md5.appendStr(this.senha.value);
-            this.http.get('https://ninjatags.com.br/eng2/getPessoa.php?applicationId=chave&email=' + this.email.value + '&senha=' + md5.end().toString()).subscribe(data => {
+            this.http.get('https://ninjatags.com.br/eng2/getPessoa.php?applicationId=chave&email='
+            + this.email.value + '&senha=' + md5.end().toString()).subscribe(data => {
               this.pessoa = data as Pessoa;
-              if(this.pessoa.Email==null){              
-                const error : Error = data as Error;
+              if (this.pessoa.Email == null) {
+                const error: Error = data as Error;
                 console.log(error);
                 const dialogAlert = this.dialog.open(AlertComponentOKCancel, {
                   width: '400px',
                   data: {title: 'Erro!', message: error.message, buttonCancel: 'Cancelar', buttonConfirm: 'Tentar novamente'}
                 });
                 dialogAlert.afterClosed().subscribe(result => {
-                  if(!result) this.closeDialog(-1);
+                  if (!result) {
+                    this.closeDialog(-1);
+                  }
                 });
-              }else{
+              } else {
                 console.log(this.pessoa);
                 this.setSession(this.pessoa);
                 this.closeDialog(1);
-              }            
+              }
             });
-          }catch(erro) {
+          } catch (erro) {
             console.log(erro);
-            const error : Error = erro as Error;
+            const error: Error = erro as Error;
             const dialogAlert = this.dialog.open(AlertComponentOKCancel, {
               width: '400px',
               data: {title: 'Erro!', message: error.message, buttonCancel: 'Cancelar', buttonConfirm: 'Tentar novamente'}          });
             dialogAlert.afterClosed().subscribe(result => {
-              if(!result) this.closeDialog(-1);
+              if (!result) {
+                this.closeDialog(-1);
+              }
             });
           }
       }
     }
-    
+
   }
   setSession(user) {
     console.log(user);
@@ -90,6 +97,6 @@ export class LoginComponent {
     }
   }
   login() {
-    
+
   }
 }

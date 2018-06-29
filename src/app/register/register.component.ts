@@ -161,41 +161,47 @@ export class RegisterComponent implements OnInit {
         pessoa.Tipo = this.tipo.value;
         pessoa.Ativo = true;
         const req = this.http.post('https://ninjatags.com.br/eng2/cadastrarPessoa.php?applicationId=chave', pessoa).subscribe(
-                res => {      
-                  const msg = res as Message; 
-                  if(msg.message=='Sucesso!'){
+                res => {
+                  const msg = res as Message;
+                  if (msg.message === 'Sucesso!') {
                     const dialogAlert = this.dialog.open(AlertComponentOK, {
                       width: '400px',
-                      data: {title: 'Sucesso!', message: 'Seu cadastro foi efetuado com sucesso. Realize o login para continuar!' ,  buttonConfirm: 'Ok'}
+                      data: {title: 'Sucesso!',
+                            message: 'Seu cadastro foi efetuado com sucesso. Realize o login para continuar!' ,
+                            buttonConfirm: 'Ok'}
                     });
                     dialogAlert.afterClosed().subscribe(result => {
                       this.closeDialog(true);
-                    });                                   
-                  }else if(msg.message=='Já existe um mesmo e-mail cadastrado!'){
+                    });
+                  } else if (msg.message === 'Já existe um mesmo e-mail cadastrado!') {
                     const dialogAlert = this.dialog.open(AlertComponentOK, {
                       width: '400px',
                       data: {title: 'Atenção!', message:  msg.message,  buttonConfirm: 'Ok'}
                     });
                     dialogAlert.afterClosed().subscribe(result => {
                       this.closeDialog(true);
-                    });    
-                  }else{
+                    });
+                  } else {
                     const dialogAlert = this.dialog.open(AlertComponentOK, {
                       width: '400px',
-                      data: {title: 'Erro!', message: 'Ocorreu um erro ao gravar o seu interesse no nosso banco de dados, tente novamente!' ,  buttonConfirm: 'Ok'}
-                    });                    
-                  }                            
+                      data: {title: 'Erro!',
+                            message: 'Ocorreu um erro ao gravar o seu interesse no nosso banco de dados, tente novamente!' ,
+                            buttonConfirm: 'Ok'}
+                    });
+                  }
                 },
                 err => {
                   console.log(err);
                   const dialogAlert = this.dialog.open(AlertComponentOK, {
                     width: '400px',
-                    data: {title: 'Erro!', message: 'Ocorreu um erro ao gravar o seu interesse no nosso banco de dados, tente novamente!' ,  buttonConfirm: 'Ok'}
-                    //data: {title: 'Erro!', message: err ,  buttonConfirm: 'Ok'}
+                    data: { title: 'Erro!',
+                            message: 'Ocorreu um erro ao gravar o seu interesse no nosso banco de dados, tente novamente!' ,
+                            buttonConfirm: 'Ok'}
+                    // data: {title: 'Erro!', message: err ,  buttonConfirm: 'Ok'}
                   });
                 }
                 );
-      }else{
+      } else {
         const dialogAlert = this.dialog.open(AlertComponentOK, {
           width: '400px',
           data: {title: 'Erro!', message: 'Senhas digitas não conferem!' ,  buttonConfirm: 'Ok'}
@@ -206,21 +212,21 @@ export class RegisterComponent implements OnInit {
     }
   }
   verificarPendenciaFormulario() {
-    var validado : boolean = false;
-    if (!this.tipo.hasError('required')) 
-      if (!this.email.hasError('required') && !this.email.hasError('email')) 
-        if (!this.nome.hasError('required')) 
-          if (!this.cpf.hasError('required')) 
-          if (!this.telefone.hasError('required')) 
-          if (!this.uf.hasError('required')) 
-          if (!this.cidade.hasError('required')) 
-          if (!this.logradouro.hasError('required')) 
-          if (!this.cep.hasError('required')) 
-          if (!this.bairro.hasError('required')) 
-          if (!this.senha.hasError('required')) 
-            if (!this.confirmacao.hasError('required')) 
-              validado = true;                    
-    return validado;            
+    var validado: boolean = false;
+    if (!this.tipo.hasError('required'))
+      if (!this.email.hasError('required') && !this.email.hasError('email'))
+        if (!this.nome.hasError('required'))
+          if (!this.cpf.hasError('required'))
+          if (!this.telefone.hasError('required'))
+          if (!this.uf.hasError('required'))
+          if (!this.cidade.hasError('required'))
+          if (!this.logradouro.hasError('required'))
+          if (!this.cep.hasError('required'))
+          if (!this.bairro.hasError('required'))
+          if (!this.senha.hasError('required'))
+            if (!this.confirmacao.hasError('required'))
+              validado = true;
+    return validado;
   }
   verificarSenhasConferem() {
     if(this.senha.value==this.confirmacao.value)

@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Interesse {{data.Numero}}</h2>
+<mat-dialog-content>
+ <h3>Cidade: {{ data.Cidade.Nome }}</h3>
+ <p> - Tipo: {{ data.Tipo }}</p>
+ <p> - Banheiros: {{ data.Banheiros }}</p>
+ <p> - Quartos: {{ data.Quartos }}</p>
+ <p> - Descrição: {{ data.Descricao }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>

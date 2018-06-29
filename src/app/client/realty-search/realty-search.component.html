@@ -16,11 +16,14 @@
                 <mat-grid-tile>
                     <mat-card class="container">
                         <h3>Seus interesses</h3>
-                        <div *ngFor="let interest of interesties">
+                        <div *ngFor="let interest of interesties; let i = index">
                             <mat-card>
-                                <h4>{{interest.title}}</h4>
-                                <mat-card-content>{{interest.description}}</mat-card-content>
-                                <mat-card-footer><button mat-stroked-button>detalhes</button></mat-card-footer>
+                                <h3>Interesse {{ (i+1) }}</h3>
+                                <mat-card-content>{{interest.Descricao}}</mat-card-content>
+                                <mat-card-footer>
+                                  <button mat-stroked-button color="accent" (click)="detalhesInteresse(i)">detalhes</button>
+                                  <button mat-stroked-button color="warn" (click)="apagarInteresse(i)">apagar</button>
+                                </mat-card-footer>
                             </mat-card>
                         </div>
                     </mat-card>

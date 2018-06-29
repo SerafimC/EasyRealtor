@@ -16,22 +16,34 @@
                             {{ tipo.viewValue }}
                         </mat-option>
                     </mat-select>
-                    <mat-error *ngIf="tipo.invalid">{{ getErrorTipoMessage() }}</mat-error>
+                    <mat-error *ngIf="tipo.invalid && buttonClicked">{{ getErrorTipoMessage() }}</mat-error>
                 </mat-form-field>
-                <mat-form-field class="select-cidades">
-                    <mat-select placeholder="Cidade de preferência" [formControl]="cidade" required>
-                        <mat-option *ngFor="let cidade of cidades" [value]="cidade.value">
-                            {{ cidade.viewValue }}
-                        </mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="cidade.invalid">{{ getErrorCidadeMessage() }}</mat-error>
-                </mat-form-field>
+                  <mat-select class="uf-interesse" placeholder="UF" [formControl]="uf" (ngModelChange)="carregarCidades($event)" required>
+                      <mat-option *ngFor="let uf of ufs" [value]="uf.value">
+                          {{ uf.viewValue }}
+                      </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="uf.invalid && buttonClicked">{{ getErrorUfMessage() }}</mat-error>
+                  <mat-select class="cidade-interesse" placeholder="Cidade" [formControl]="cidade" required>
+                      <mat-option *ngFor="let cidade of cidades" [value]="cidade.CodigoIbgeCidade">
+                          {{ cidade.Nome }}
+                      </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="cidade.invalid && buttonClicked">{{ getErrorCidadeMessage() }}</mat-error>
+                  <mat-form-field class="banheiros-interesse">
+                    <input matInput type="number" placeholder="Banheiros" [formControl]="banheiros" min="1">
+                    <mat-error *ngIf="banheiros.invalid">{{ getErrorBanheirosMessage() }}</mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="quartos-interesse">
+                    <input matInput type="number" placeholder="Quartos" [formControl]="quartos" min="1">
+                    <mat-error *ngIf="quartos.invalid">{{ getErrorQuartosMessage() }}</mat-error>
+                  </mat-form-field>
             </mat-list-item>
             <br/>
             <mat-list-item>
                 <mat-form-field class="input-descricao">
                     <textarea matInput placeholder="Descreva o que você está procurando" [formControl]="descricao" required></textarea>
-                    <mat-error *ngIf="descricao.invalid">{{ getErrorDescricaoMessage() }}</mat-error>
+                    <mat-error *ngIf="descricao.invalid && buttonClicked">{{ getErrorDescricaoMessage() }}</mat-error>
                 </mat-form-field>
             </mat-list-item>
             <br>
