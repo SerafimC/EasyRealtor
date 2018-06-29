@@ -1,5 +1,6 @@
 import { Cidade } from './../../model/Cidade';
 import { TipoImovel } from './../../model/TipoImovel';
+import { Router } from '@angular/router';
 import { AlertComponentDetailsInterest } from './../../shared/alerts/alertDetailsInterest/alertDetailsInterest.component';
 import { Pessoa } from './../../model/Pessoa';
 import { Component, OnInit } from '@angular/core';
@@ -31,7 +32,8 @@ export class RealtySearchComponent implements OnInit {
     Quartos: 0,
     Descricao: ''
 };
-  constructor(@Inject(SESSION_STORAGE) private storage: StorageService, private http: HttpClient, public dialog: MatDialog) {}
+  constructor(@Inject(SESSION_STORAGE) private storage: StorageService, private router: Router,
+  private http: HttpClient, public dialog: MatDialog) {}
 
   ngOnInit() {
     const awesomeSession: Pessoa = this.storage.get(STORAGE_KEY) || null;
@@ -75,6 +77,9 @@ export class RealtySearchComponent implements OnInit {
     dialogAlert.afterClosed().subscribe(result => {
       this.data.Cidade = new Cidade();
     });
+  }
+  cadastrarInteresse() {
+    this.router.navigate(['/new_interest']);
   }
   // findMe() {
   //   if (navigator.geolocation) {
