@@ -1,4 +1,4 @@
-import { TipoPessoa } from "./TipoPessoa";
+import { TipoPessoa } from './TipoPessoa';
 
 export class Pessoa {
     public Nome: string;
@@ -13,4 +13,3 @@ export class Pessoa {
     public Senha: string;
     public Ativo: boolean;
   }
-  

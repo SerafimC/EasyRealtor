@@ -1,3 +1,24 @@
-<p>
-  announcements works!
-</p>
+<mat-toolbar style="background: rgb(143, 135, 255); color: white;">
+    <button style="background: rgb(63, 53, 156); color: white;" mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>Buscar Imóvel</button>
+        <button mat-menu-item>Visualizar ofertas</button>
+        <button mat-menu-item (click)="cadastrarImovel()">Cadastrar Imovel</button>
+    </mat-menu>
+</mat-toolbar>
+<mat-grid-list cols="1" rowHeight="2.15:1">
+    <mat-grid-tile ng-scrollable="{scrollX:'none',scrollY:'left'}" class="">
+        <mat-card class="container" flex style="overflow: scroll;">
+            <div *ngFor="let imovel of imoveis; let i = index">
+                <mat-card class='card'>
+                    <h3>{{ imovel.Nome }}</h3>
+                    <mat-card-content>{{imovel.Descricao}}</mat-card-content>
+                    <mat-card-footer>
+                        <button mat-stroked-button color="accent" (click)="detalhesInteresse(i)">+detalhes</button>
+                        <button mat-stroked-button color="warn" (click)="apagarInteresse(i)">apagar</button>
+                    </mat-card-footer>
+                </mat-card>
+            </div>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

@@ -1,6 +1,6 @@
 export enum TipoImovel {
     Apartamento,
-    Casa, 
+    Casa,
     SalaComercial,
     Terreno
 }

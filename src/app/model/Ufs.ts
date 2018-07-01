@@ -1,0 +1,31 @@
+export class Ufs {
+    public ufs = [
+        {value: '12', viewValue: 'AC'},
+        {value: '27', viewValue: 'AL'},
+        {value: '16', viewValue: 'AP'},
+        {value: '13', viewValue: 'AM'},
+        {value: '29', viewValue: 'BA'},
+        {value: '23', viewValue: 'CE'},
+        {value: '53', viewValue: 'DF'},
+        {value: '32', viewValue: 'ES'},
+        {value: '52', viewValue: 'GO'},
+        {value: '21', viewValue: 'MA'},
+        {value: '51', viewValue: 'MT'},
+        {value: '50', viewValue: 'MS'},
+        {value: '31', viewValue: 'MG'},
+        {value: '15', viewValue: 'PA'},
+        {value: '25', viewValue: 'PB'},
+        {value: '41', viewValue: 'PR'},
+        {value: '26', viewValue: 'PE'},
+        {value: '22', viewValue: 'PI'},
+        {value: '33', viewValue: 'RJ'},
+        {value: '24', viewValue: 'RN'},
+        {value: '43', viewValue: 'RS'},
+        {value: '11', viewValue: 'RO'},
+        {value: '14', viewValue: 'RR'},
+        {value: '42', viewValue: 'SC'},
+        {value: '35', viewValue: 'SP'},
+        {value: '28', viewValue: 'SE'},
+        {value: '17', viewValue: 'TO'}
+      ];
+ }

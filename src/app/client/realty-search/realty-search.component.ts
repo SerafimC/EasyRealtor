@@ -5,6 +5,7 @@ import { AlertComponentDetailsInterest } from './../../shared/alerts/alertDetail
 import { Pessoa } from './../../model/Pessoa';
 import { Component, OnInit } from '@angular/core';
 import { Interesse } from '../../model/Interesse';
+import { Imovel } from '../../model/Imovel';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
@@ -23,6 +24,7 @@ import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 export class RealtySearchComponent implements OnInit {
 
   interesties: Interesse[];
+  imoveis: Imovel[];
   data = {
     Numero: 0,
     Tipo: '',
@@ -31,7 +33,19 @@ export class RealtySearchComponent implements OnInit {
     Banheiros: 0,
     Quartos: 0,
     Descricao: ''
-};
+  };
+  dataImovel = {
+    Descricao: '',
+    Nome: '',
+    Logradouro: '',
+    Bairro: '',
+    Cep: '',
+    Tipo: '',
+    Quartos: 0,
+    Banheiros: 0,
+    Latitude: '',
+    Longitude: ''
+  };
   constructor(@Inject(SESSION_STORAGE) private storage: StorageService, private router: Router,
   private http: HttpClient, public dialog: MatDialog) {}
 
@@ -41,6 +55,11 @@ export class RealtySearchComponent implements OnInit {
       + awesomeSession.Email).subscribe(data => {
               this.interesties = data as Interesse[];
             });
+    this.http.get('https://ninjatags.com.br/eng2/getListInteresses.php?applicationId=chave&email='
+    + awesomeSession.Email).subscribe(data => {
+            this.imoveis = data as Imovel[];
+          });
+
   }
   apagarInteresse(index) {
     this.http.delete('https://ninjatags.com.br/eng2/apagarInteresse.php?applicationId=chave&guid='
@@ -81,19 +100,4 @@ export class RealtySearchComponent implements OnInit {
   cadastrarInteresse() {
     this.router.navigate(['/new_interest']);
   }
-  // findMe() {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       const dialogAlert = this.dialog.open(AlertComponentOK, {
-  //         width: '400px',
-  //         data: { title: 'Sucesso!', message: 'Latitude: ' + position.coords.latitude + 'Longitude: ' + position.coords.longitude }
-  //       });
-  //     });
-  //   } else {
-  //     const dialogAlert = this.dialog.open(AlertComponentOK, {
-  //       width: '400px',
-  //       data: { title: 'Erro!', message: 'A Geolocalização não é suportada por esse navegador!' }
-  //     });
-  //   }
-  // }
 }

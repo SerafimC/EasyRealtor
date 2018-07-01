@@ -1,0 +1,45 @@
+.select-cidades {
+    width: 100%;
+    margin-left: 15px;
+}
+
+.input-descricao {
+    width: 100%;
+}
+
+.input-email {
+    width: 100%;
+}
+
+.button {
+    margin: 10px;
+}
+
+.uf-interesse {
+    margin: 10px;
+    width: 150px;
+}
+
+.cidade-interesse {
+    margin: 10px;
+}
+
+.quartos-interesse {
+    margin: 10px;
+    width: 120px;
+}
+
+.banheiros-interesse {
+    margin: 10px;
+    width: 120px;
+}
+
+.logradouro-interesse {
+    width: 400px;
+}
+
+.inputs {
+    margin: 10px;
+}
+
+.list-right {}

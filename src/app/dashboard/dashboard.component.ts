@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
   advertiser() {
-    this.router.navigate(['/advertiser']);
+    this.router.navigate(['/new_advertise']);
   }
   client() {
     this.router.navigate(['/new_interest']);

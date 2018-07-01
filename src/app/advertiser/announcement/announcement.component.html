@@ -1,3 +1,78 @@
-<p>
-  announcement works!
-</p>
+<mat-grid-list cols="1" rowHeight="2.15:1">
+    <mat-grid-tile style="background: rgb(64, 51, 184);">
+        <mat-list style="height: 300px;">
+            <mat-list-item>
+                <h1>Conte-nos o que deseja anunciar</h1>
+            </mat-list-item>
+            <br/>
+            <mat-divider></mat-divider>
+            <br/>
+            <mat-list-item>
+                <mat-form-field>
+                    <mat-select placeholder="Tipo de imovel" [formControl]="tipo" required>
+                        <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+                            {{ tipo.viewValue }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="tipo.invalid && buttonClicked">{{ getErrorTipoMessage() }}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="uf-interesse">
+                    <mat-select placeholder="UF" [formControl]="uf" (ngModelChange)="carregarCidades($event)" required>
+                        <mat-option *ngFor="let uf of ufs.ufs" [value]="uf.value">
+                            {{ uf.viewValue }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="uf.invalid && buttonClicked">{{ getErrorUfMessage() }}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="cidade-interesse">
+                    <mat-select placeholder="Cidade" [formControl]="cidade" required>
+                        <mat-option *ngFor="let cidade of cidades" [value]="cidade.CodigoIbgeCidade">
+                            {{ cidade.Nome }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="cidade.invalid && buttonClicked">{{ getErrorCidadeMessage() }}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="banheiros-interesse">
+                    <input matInput type="number" placeholder="Banheiros" [formControl]="banheiros" min="1" required>
+                    <mat-error *ngIf="banheiros.invalid">{{ getErrorBanheirosMessage() }}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="quartos-interesse">
+                    <input matInput type="number" placeholder="Quartos" [formControl]="quartos" min="1" required>
+                    <mat-error *ngIf="quartos.invalid">{{ getErrorQuartosMessage() }}</mat-error>
+                </mat-form-field>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-form-field class="logradouro-interesse">
+                    <input matInput type="string" placeholder="Logradouro" [formControl]="logradouro" min="1" required>
+                    <mat-error *ngIf="logradouro.invalid">{{ getErrorRequired() }}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="inputs">
+                    <input matInput type="string" placeholder="Bairro" [formControl]="bairro" min="1" required>
+                    <mat-error *ngIf="bairro.invalid">{{ getErrorRequired() }}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="inputs">
+                    <input matInput type="string" placeholder="CEP" [formControl]="cep" min="1" required>
+                    <mat-error *ngIf="cep.invalid">{{ getErrorRequired() }}</mat-error>
+                </mat-form-field>
+            </mat-list-item>
+            <br/>
+            <mat-list-item style="height: 160px">
+                <mat-form-field class="input-descricao">
+                    <textarea style="height: 130px; resize: none;" matInput placeholder="Descreva os detalhes adicionais" [formControl]="descricao" required></textarea>
+                    <mat-error *ngIf="descricao.invalid && buttonClicked">{{ getErrorDescricaoMessage() }}</mat-error>
+                </mat-form-field>
+            </mat-list-item>
+            <br>
+            <mat-list-item>
+                <button class="button" mat-stroked-button (click)="cancelar()">Cancelar</button>
+                <button class="button" mat-stroked-button (click)="confirmar()">Confirmar</button>
+            </mat-list-item>
+        </mat-list>
+        <mat-list class="list-right">
+            <mat-list-item>
+                <h1> Ou </h1>
+                <button class="button" mat-stroked-button (click)="announcements()"><h1>Veja os já anunciados</h1></button>
+            </mat-list-item>
+        </mat-list>
+    </mat-grid-tile>
+</mat-grid-list>
