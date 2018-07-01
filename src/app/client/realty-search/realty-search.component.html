@@ -1,9 +1,11 @@
 <mat-toolbar style="background: rgb(143, 135, 255); color: white;">
     <button style="background: rgb(63, 53, 156); color: white;" mat-button [matMenuTriggerFor]="menu">Menu</button>
     <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="inicio()">Inicio</button>
         <button mat-menu-item>Buscar Imóvel</button>
-        <button mat-menu-item>Visualizar ofertas</button>
-        <button mat-menu-item (click)="cadastrarInteresse()">Cadastrar interesse</button>
+        <button mat-menu-item (click)="verImoveis()">Meus Imóveis</button>
+        <button mat-menu-item (click)="cadastrarInteresse()">Cadastrar Interesse</button>
+        <button mat-menu-item (click)="cadastrarImovel()">Cadastrar Imóvel</button>
     </mat-menu>
 </mat-toolbar>
 <mat-grid-list cols="1" rowHeight="2.15:1">

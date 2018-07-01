@@ -19,7 +19,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AlertComponentOK } from './shared/alerts/alertOK/alertOK.component';
 import { AlertComponentOKCancel } from './shared/alerts/alertOKCancel/alertOKCancel.component';
-import { AlertComponentDetailsInterest } from './shared/alerts/alertDetailsInterest/alertDetailsInterest.component';
+import { AlertComponentDetails } from './shared/alerts/alertDetails/alertDetails.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { IndexComponent } from './index/index.component';
 import { RegisterComponent } from './register/register.component';
@@ -36,7 +36,7 @@ import { Ufs } from './model/Ufs';
     LoginComponent,
     AlertComponentOK,
     AlertComponentOKCancel,
-    AlertComponentDetailsInterest,
+    AlertComponentDetails,
     DashboardComponent,
     RegisterComponent
   ],

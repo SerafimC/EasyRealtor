@@ -1,7 +1,7 @@
 import { Cidade } from './../../model/Cidade';
 import { TipoImovel } from './../../model/TipoImovel';
 import { Router } from '@angular/router';
-import { AlertComponentDetailsInterest } from './../../shared/alerts/alertDetailsInterest/alertDetailsInterest.component';
+import { AlertComponentDetails } from './../../shared/alerts/alertDetails/alertDetails.component';
 import { Pessoa } from './../../model/Pessoa';
 import { Component, OnInit } from '@angular/core';
 import { Interesse } from '../../model/Interesse';
@@ -26,7 +26,7 @@ export class RealtySearchComponent implements OnInit {
   interesties: Interesse[];
   imoveis: Imovel[];
   data = {
-    Numero: 0,
+    Numero: '',
     Tipo: '',
     Uf: '',
     Cidade: new Cidade(),
@@ -81,7 +81,7 @@ export class RealtySearchComponent implements OnInit {
       break;
     }
     console.log(this.data);
-    this.data.Numero = index + 1;
+    this.data.Numero = 'Interesse ' + (index + 1);
     this.data.Banheiros = this.interesties[index].Banheiros;
     this.data.Quartos = this.interesties[index].Quartos;
     this.data.Descricao = this.interesties[index].Descricao;
@@ -89,7 +89,7 @@ export class RealtySearchComponent implements OnInit {
       + this.interesties[index].CodigoIbgeMunicipio).subscribe(data => {
               this.data.Cidade = data as Cidade;
             });
-    const dialogAlert = this.dialog.open(AlertComponentDetailsInterest, {
+    const dialogAlert = this.dialog.open(AlertComponentDetails, {
       width: '400px',
       data: this.data
     });
@@ -99,5 +99,17 @@ export class RealtySearchComponent implements OnInit {
   }
   cadastrarInteresse() {
     this.router.navigate(['/new_interest']);
+  }
+  cadastrarImovel() {
+    this.router.navigate(['/announcement']);
+  }
+  buscarImovel() {
+    this.router.navigate(['/realty_search']);
+  }
+  verImoveis() {
+    this.router.navigate(['/announcements']);
+  }
+  inicio() {
+    this.router.navigate(['/dashboard']);
   }
 }

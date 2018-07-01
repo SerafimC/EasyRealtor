@@ -1,7 +1,8 @@
 import { TipoImovel } from './TipoImovel';
 
 export class Imovel {
-    public Id: string;
+    public Guid: string;
+    public Email: string;
     public Descricao: string;
     public Nome: string;
     public Logradouro: string;

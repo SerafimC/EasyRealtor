@@ -105,6 +105,8 @@ export class AnnouncementComponent implements OnInit {
             const awesomeSession: Pessoa = this.storage.get(STORAGE_KEY) || null;
             if (awesomeSession != null) {
               const imovel: Imovel = new Imovel();
+              imovel.Guid = Guid.MakeNew().ToString();
+              imovel.Email = awesomeSession.Email;
               imovel.Tipo = this.tipo.value;
               imovel.CodigoIbgeMunicipio = this.cidade.value;
               imovel.Nome = '';
@@ -116,7 +118,7 @@ export class AnnouncementComponent implements OnInit {
               imovel.Cep = this.cep.value;
               imovel.Latitude = '0';
               imovel.Longitude = '0';
-              // console.log(interesse);
+              //console.log(imovel);
               const req = this.http.post('https://ninjatags.com.br/eng2/cadastrarImovel.php?applicationId=chave', imovel).subscribe(
                 res => {
                   const dialogAlert = this.dialog.open(AlertComponentOK, {

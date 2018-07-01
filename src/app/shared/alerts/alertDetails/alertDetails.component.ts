@@ -3,14 +3,14 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { DialogData } from '../../../model/DialogData';
 
 @Component({
-  selector: 'app-alertDetailsInterest',
-  templateUrl: './alertDetailsInterest.component.html',
-  styleUrls: ['./alertDetailsInterest.component.css']
+  selector: 'app-alertDetails',
+  templateUrl: './alertDetails.component.html',
+  styleUrls: ['./alertDetails.component.css']
 })
 
-export class AlertComponentDetailsInterest {
+export class AlertComponentDetails {
   constructor(
-    public dialogRef: MatDialogRef<AlertComponentDetailsInterest>,
+    public dialogRef: MatDialogRef<AlertComponentDetails>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
 
     }
