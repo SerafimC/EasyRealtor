@@ -128,7 +128,7 @@ export class AnnouncementComponent implements OnInit {
                             buttonConfirm: 'Ok'}
                   });
                   dialogAlert.afterClosed().subscribe(result => {
-                    this.router.navigate(['/realty_search']);
+                    this.router.navigate(['/advertises']);
                   });
                 },
                 err => {

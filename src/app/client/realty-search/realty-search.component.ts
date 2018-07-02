@@ -35,6 +35,7 @@ export class RealtySearchComponent implements OnInit {
     Descricao: ''
   };
   dataImovel = {
+    Numero: '',
     Descricao: '',
     Nome: '',
     Logradouro: '',
@@ -44,6 +45,7 @@ export class RealtySearchComponent implements OnInit {
     Quartos: 0,
     Banheiros: 0,
     Latitude: '',
+    Cidade: new Cidade(),
     Longitude: ''
   };
   constructor(@Inject(SESSION_STORAGE) private storage: StorageService, private router: Router,
@@ -54,12 +56,13 @@ export class RealtySearchComponent implements OnInit {
     this.http.get('https://ninjatags.com.br/eng2/getListInteresses.php?applicationId=chave&email='
       + awesomeSession.Email).subscribe(data => {
               this.interesties = data as Interesse[];
+              console.log(this.interesties);
+              this.http.post('https://ninjatags.com.br/eng2/getListImoveisPelosInteresses.php?applicationId=chave',
+                this.interesties).subscribe(dataImoveis => {
+                  this.imoveis = dataImoveis as Imovel[];
+                  console.log(this.imoveis);
+                });
             });
-    this.http.get('https://ninjatags.com.br/eng2/getListInteresses.php?applicationId=chave&email='
-    + awesomeSession.Email).subscribe(data => {
-            this.imoveis = data as Imovel[];
-          });
-
   }
   apagarInteresse(index) {
     this.http.delete('https://ninjatags.com.br/eng2/apagarInteresse.php?applicationId=chave&guid='
@@ -95,6 +98,38 @@ export class RealtySearchComponent implements OnInit {
     });
     dialogAlert.afterClosed().subscribe(result => {
       this.data.Cidade = new Cidade();
+    });
+  }
+  detalhesImovel(index) {
+    switch (this.imoveis[index].Tipo.toString()) {
+      case '0':
+      this.dataImovel.Tipo = 'Apartamento';
+      break;
+      case '1':
+      this.dataImovel.Tipo = 'Casa';
+      break;
+      case '2':
+      this.dataImovel.Tipo = 'Sala Comercial';
+      break;
+      case '3':
+      this.dataImovel.Tipo = 'Terreno';
+      break;
+    }
+    console.log(this.dataImovel);
+    this.dataImovel.Numero = 'Imóvel ' + (index + 1);
+    this.dataImovel.Banheiros = this.imoveis[index].Banheiros;
+    this.dataImovel.Quartos = this.imoveis[index].Quartos;
+    this.dataImovel.Descricao = this.imoveis[index].Descricao;
+    this.http.get('https://ninjatags.com.br/eng2/getCidade.php?applicationId=chave&codIbgeMunicipio='
+      + this.imoveis[index].CodigoIbgeMunicipio).subscribe(dataImovel => {
+              this.dataImovel.Cidade = dataImovel as Cidade;
+            });
+    const dialogAlert = this.dialog.open(AlertComponentDetails, {
+      width: '400px',
+      data: this.dataImovel
+    });
+    dialogAlert.afterClosed().subscribe(result => {
+      this.dataImovel.Cidade = new Cidade();
     });
   }
   cadastrarInteresse() {
